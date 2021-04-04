@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Finder</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="container h-100">
+        <div class="row">
+            <div class="col-12 d-flex">
+                <div class="display-3">
+                    Route Finder
+                </div>
+            </div>
+            <div class="col-12 d-flex">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1980.4947407219668!2d107.61092195654902!3d-6.891860784587275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2478e3dcdce37961!2sBandung%20Institute%20of%20Technology!5e0!3m2!1sen!2sid!4v1617458962117!5m2!1sen!2sid" allowfullscreen="" loading="lazy" class="maps-frame"></iframe>
+            </div>
+            <div class="col-12 d-flex">
+                <form method="POST" action="post.php" class="submit-form">
+                    <input type="file" class="form-control" name="file-graf"/>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="posisi-awal" placeholder="Posisi Awal">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="posisi-tujuan" placeholder="Posisi Tujuan">
+                                </div>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
