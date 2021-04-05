@@ -15,20 +15,30 @@ function initialize_map() {
         view: new ol.View({
             center: ol.proj.fromLonLat([mapLng, mapLat]),
             zoom: mapDefaultZoom
-        })
+        })        
     });
 
     map.on('click', function (evt) {
         var coor = ol.proj.toLonLat(evt.coordinate);
-        console.log(coor[1]);
         console.log(coor[0]);
-        // point(coor[1], coor[0]);
+        console.log(coor[1]);
+        //console.log(coor);
+        // var coor1 = [107.60969191789626, -6.8896571064314855];
+        // var coor2 = [107.61146217584607, -6.890908639963897];
+        // drawLine(coor1,coor2);
+        point(coor[0], coor[1]);
         // getGeocode(coor);
     });
 }
 
+// add point to map
 function point(lat, lng) {
   var vectorLayer = new ol.layer.Vector({
+    source:new ol.source.Vector({
+      features: [new ol.Feature({
+            geometry: new ol.geom.fromLonLat(ol.proj.transform([parseFloat(lat), parseFloat(lng)], 'EPSG:4326', 'EPSG:3857')),
+        })]
+    }),
     style: new ol.style.Style({
       image: new ol.style.Icon({
         src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Google_Maps_pin.svg"
@@ -47,3 +57,31 @@ function getGeocode(coords) {
              console.log(json);
          });
  }
+
+// draw line between coord in map
+function drawLine(coor1, coor2)
+{
+  var posisiAwal = ol.proj.fromLonLat(coor1);
+  var posisiTujuan = ol.proj.fromLonLat(coor2);
+
+  var style = [
+    new ol.style.Style({
+      stroke: new ol.style.Stroke({
+      color: 'red',
+      width: 3
+      })
+    })
+    ];
+          
+  var lineDraw = new ol.layer.Vector({
+      source: new ol.source.Vector({
+      features: [new ol.Feature({
+        geometry: new ol.geom.LineString([posisiAwal, posisiTujuan]),
+        name: 'Line',
+      })]
+    })
+  });
+  
+  lineDraw.setStyle(style);
+  map.addLayer(lineDraw);
+}
