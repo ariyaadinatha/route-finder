@@ -18,6 +18,7 @@ function initialize_map() {
         })        
     });
 
+    point(0,0);
     // format (lng, lat)
     map.on('click', function (evt) {
         var coor = ol.proj.toLonLat(evt.coordinate);
@@ -27,6 +28,7 @@ function initialize_map() {
         // var coor1 = [107.60969191789626, -6.8896571064314855];
         // var coor2 = [107.61146217584607, -6.890908639963897];
         // drawLine(coor1,coor2);
+    
         point(coor[0], coor[1]);
         // getGeocode(coor);
     });

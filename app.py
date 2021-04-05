@@ -34,6 +34,11 @@ def index():
         return render_template('index.html', data=data)
 
 
+# Read from file
+def readFile(namafile):
+    pass
+
+
 # Distance between coordinate
 def getDistance(coor1, coor2):
     distLon = (coor2[0] - coor1[0]) * math.pi / 180.0

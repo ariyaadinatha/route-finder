@@ -1,23 +1,56 @@
-import math
+import os
+
 
 # format coor (lon,lat)
 # Menggunakan formula haversine
 
+testMatix = []
 
-def getDistance(coor1, coor2):
-    distLon = (coor2[0] - coor1[0]) * math.pi / 180.0
-    distLat = (coor2[1] - coor1[1]) * math.pi / 180.0
-    coor1[1] = (coor1[1]) * math.pi / 180.0
-    coor2[1] = (coor2[1]) * math.pi / 180.0
-
-    a = ((((math.sin(distLon/2))**2) *
-         math.cos(coor1[1]) * math.cos(coor2[1])) + (math.sin(distLat/2)**2))
-    c = 2 * math.asin(math.sqrt(a))
-    dist = c * 6371
-    return dist
+# f(n) =  g(n) + h(n)
+# g(n) = jarak dari posisiAwal ke n
+# h(n) = jarak garis lurus ke posisiTujuan
 
 
-coor1 = [107.60969191789626, -6.8896571064314855]
-coor2 = [107.61146217584607, -6.890908639963897]
+def aStar(posisiAwal, posisiTujuan):
+    print("a")
 
-print(getDistance(coor1, coor2))
+
+def readFile(namafile):
+    uploadDir = (str(os.getcwd())+"/upload/")
+    fileLoc = (uploadDir+namafile)
+    with open(fileLoc) as fp:
+        line = fp.readline()
+        for i in line:
+            print(i)
+        # print(line)
+
+
+def fileToGraph(namaFile):
+    filepath = (str(os.getcwd())+"/upload/"+namaFile)
+    # row = getRow(namaFile)
+    # arraydaGra = [[] for i in range(row)]
+    with open(filepath) as fp:
+        line = fp.readline()
+        # countIndex = 0
+        index = 0
+        while line:
+            striped = (line.rstrip(".\n").split(", "))
+            # arrayEdges = []
+            for content in striped:
+                #  print(content)
+                if (index == 0):
+                    n = content
+                    index += 1
+                    print(n)
+                elif ((index == n)):
+                    print(f"ini line ke {content}")
+                # print(index)
+                index += 1
+                #     arrayEdges.append(content)
+            # arraydaGra[countIndex] += [[vertices], arrayEdges]
+            # countIndex += 1
+            line = fp.readline()
+    # return (arraydaGra)
+
+
+fileToGraph("test2.txt")
