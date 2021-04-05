@@ -1,7 +1,7 @@
 var map;
 // Koordinat ITB
-var mapLat = -6.890282;
 var mapLng = 107.610400;
+var mapLat = -6.890282;
 var mapDefaultZoom = 18;
 
 function initialize_map() {
@@ -18,6 +18,7 @@ function initialize_map() {
         })        
     });
 
+    // format (lng, lat)
     map.on('click', function (evt) {
         var coor = ol.proj.toLonLat(evt.coordinate);
         console.log(coor[0]);
@@ -32,11 +33,11 @@ function initialize_map() {
 }
 
 // add point to map
-function point(lat, lng) {
+function point(lng, lat) {
   var vectorLayer = new ol.layer.Vector({
     source:new ol.source.Vector({
       features: [new ol.Feature({
-            geometry: new ol.geom.fromLonLat(ol.proj.transform([parseFloat(lat), parseFloat(lng)], 'EPSG:4326', 'EPSG:3857')),
+            geometry: new ol.geom.Point(ol.proj.transform([parseFloat(lng), parseFloat(lat)], 'EPSG:4326', 'EPSG:3857')),
         })]
     }),
     style: new ol.style.Style({
