@@ -141,9 +141,21 @@ def getAdj(city, nodes, adj):
     indexAdj = 0
     arrayAdj = []
     for i in adj[indexCity]:
-        if (i == 1):
+        if (i != 0):
             # arrayAdj.append(nodes[indexAdj]["name"])
             arrayAdj.append(nodes[indexAdj])
+        indexAdj += 1
+    return arrayAdj
+
+
+def getAdjIndex(city, nodes, adj):
+    indexCity = getIndexCity(city, nodes, adj)
+    indexAdj = 0
+    arrayAdj = []
+    for i in adj[indexCity]:
+        if (i != 0):
+            # arrayAdj.append(nodes[indexAdj]["name"])
+            arrayAdj.append(indexAdj)
         indexAdj += 1
     return arrayAdj
 
@@ -211,6 +223,7 @@ def aStarPath(kotaAwal, kotaTujuan, nodes, adj):
     indexKotaAwal = getIndexCity(kotaAwal, nodes, adj)
     indexKotaTujuan = getIndexCity(kotaTujuan, nodes, adj)
     uniformSearch = adj
+    astar = []
 
     # g(n)
     for i in range(len(uniformSearch)):
@@ -218,13 +231,27 @@ def aStarPath(kotaAwal, kotaTujuan, nodes, adj):
             if (uniformSearch[i][j] != 0):
                 uniformSearch[i][j] = getDistanceBetweenCity(
                     nodes[i], nodes[j])
-    print(uniformSearch)
-    print("")
+
     # h(n)
     greedySearch = getDistanceToCity(nodes[indexKotaTujuan], nodes, adj)
-    print(greedySearch)
 
     # f(n)
+    # isinya index tetangga
+    tetangga = (getAdjIndex(kotaAwal, nodes, adj))
+    for i in tetangga:
+        astar.append([[uniformSearch[indexKotaAwal][i] +
+                     greedySearch[i]], [indexKotaAwal, i]])
+    # print(astar)
+    minimumIndex = (getIndexMinimumDistance(astar))
+    while ((astar[minimumIndex][1][-1]) != indexKotaTujuan):
+        tetangga = (getAdjIndex(
+            nodes[astar[minimumIndex][1][-1]]["name"], nodes, adj))
+        for i in tetangga:
+            astar.append([[uniformSearch[astar[minimumIndex][1][-1]][i] +
+                           greedySearch[i]], [astar[minimumIndex][1][-1], i]])
+        minimumIndex = (getIndexMinimumDistance(astar))
+        # print(f"minimumIndex : {minimumIndex}")
+    print(astar)
 
 
 aStarPath("Arad", "Bucharest", nodes, adj)
