@@ -1,33 +1,3 @@
-array = [["Bucharest", 44.457, 26.093],
-         ["Arad", 46.181, 21.312],
-         ["Zerind", 46.624, 21.518],
-         ["Oradea", 47.089, 21.907],
-         ["Sibiu", 45.794, 24.128],
-         ["Fagaras", 45.842, 24.973],
-         ["Timisoara", 45.756, 21.231],
-         ["Lugoj", 45.691, 21.903],
-         ["Mehadia", 44.904, 22.365],
-         ["Drobeta", 44.639, 22.659],
-         ["Cralova", 44.319, 23.794],
-         ["Rimnicu Vilcea", 45.099, 24.369],
-         ["Pitesti", 44.856, 24.869],
-         ["Giurgiu", 43.905, 25.969],
-         ["Urziceni", 44.718, 26.645],
-         ["Neamt", 47.056, 26.506],
-         ["Iasi", 47.158, 27.598],
-         ["Vaslui", 46.641, 27.728],
-         ["Hirsova", 44.690, 27.945],
-         ["Eforie", 44.049, 28.653]]
-
-# print("nodes: [")
-# for i in array:
-#     print("{")
-#     print(f"\"longitude\": {i[1]},")
-#     print(f"\"latitude\": {i[2]},")
-#     print(f"\"name\": \"{i[0]}\"")
-#     print("},")
-# print("]")
-
 nodes = [
     {
         "longitude": 44.457,
@@ -159,6 +129,9 @@ adj = [
 def getAdj(nodes, adj):
     size = len(nodes)
     index = 0
+    visited = []
+    current = []
+    path = []
     for i in adj:
         indexAdj = 0
         print(f"\nkota : {nodes[index]['name']}")
@@ -166,11 +139,30 @@ def getAdj(nodes, adj):
             # print(j)
             if (j == 1):
                 print(f"tetangga : {nodes[indexAdj]['name']}")
+                visited = []
             indexAdj += 1
         if (index != size-1):
             index += 1
-        # print(size)
-        # print(index)
 
 
-getAdj(nodes, adj)
+def getDistance(lng1, lat1, lng2, lat2):
+    distLon = (lng2 - lng1) * math.pi / 180.0
+    distLat = (lat2 - lat1) * math.pi / 180.0
+    lat1 = (lat1) * math.pi / 180.0
+    lat2 = (lat2) * math.pi / 180.0
+
+    a = ((((math.sin(distLon/2))**2) *
+         math.cos(lat1) * math.cos(lat2)) + (math.sin(distLat/2)**2))
+    c = 2 * math.asin(math.sqrt(a))
+    dist = c * 6371
+    return dist
+
+
+def getIndexCity(city, nodes, adj):
+    index = 0
+    for i in nodes:
+        if (i["name"] == city):
+            return index
+        index += 1
+
+# getAdj(nodes, adj)

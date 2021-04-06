@@ -40,14 +40,14 @@ def readFile(namafile):
 
 
 # Distance between coordinate
-def getDistance(coor1, coor2):
-    distLon = (coor2[0] - coor1[0]) * math.pi / 180.0
-    distLat = (coor2[1] - coor1[1]) * math.pi / 180.0
-    coor1[1] = (coor1[1]) * math.pi / 180.0
-    coor2[1] = (coor2[1]) * math.pi / 180.0
+def getDistance(lng1, lat1, lng2, lat2):
+    distLon = (lng2 - lng1) * math.pi / 180.0
+    distLat = (lat2 - lat1) * math.pi / 180.0
+    lat1 = (lat1) * math.pi / 180.0
+    lat2 = (lat2) * math.pi / 180.0
 
     a = ((((math.sin(distLon/2))**2) *
-         math.cos(coor1[1]) * math.cos(coor2[1])) + (math.sin(distLat/2)**2))
+         math.cos(lat1) * math.cos(lat2)) + (math.sin(distLat/2)**2))
     c = 2 * math.asin(math.sqrt(a))
     dist = c * 6371
     return dist
