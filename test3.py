@@ -184,39 +184,79 @@ def getDistanceToCity(cityNode, copyNodes, adj):
     return copyNodes
 
 
-# belom beres
-def getMinimum(arrayRute):
+# minimum distance format input [x, [y,y,y,y]]; x nilai, y rute
+def getIndexMinimumDistance(arrayRute):
     minimum = arrayRute[0]
-    for i in arrayRute:
-        if (int(minimum[0]) > int(arrayRute[i][0])):
+    index = 0
+    for i in range(len(arrayRute)):
+        if ((minimum[0]) > (arrayRute[i][0])):
             minimum = arrayRute[i]
-    print(minimum)
-    print(arrayRute[0])
+            index = i
+    return index
+
+
+def getMinimum(arrayRute):
+    for i in arrayRute:
+        if (i != 0):
+            minimum = i
+            break
+    for i in range(len(arrayRute)):
+        minimum = arrayRute[i]
+    return minimum
 
 
 # belom beres
 def aStarPath(kotaAwal, kotaTujuan, nodes, adj):
     copyAdj = adj
+    copyNodes = nodes
     indexKotaAwal = getIndexCity(kotaAwal, nodes, adj)
     indexKotaTujuan = getIndexCity(kotaTujuan, nodes, adj)
+    totalDistance = []
+    uniformCost = []
 
     # h(n)
-    getDistanceToCity(kotaTujuan, copyNodes, adj)
+    getDistanceToCity(nodes[indexKotaTujuan], copyNodes, adj)
 
+    # print(copyNodes[2]["distance"])
+    # print(copyNodes[4]["distance"])
+    # print(copyNodes[6]["distance"])
     indexAdj = 0
-    # mencari jarak antar kota tetangga
-    for i in copyAdj[indexKotaAwal]:
+    indexKota = indexKotaAwal
+
+    # mencari jarak antar kota tetangga, g(n)
+    for i in copyAdj[indexKota]:
         if (i == 1):
-            copyAdj[indexKotaAwal][indexAdj] = getDistanceBetweenCity(
-                nodes[indexKotaAwal], nodes[indexAdj])
+            copyAdj[indexKota][indexAdj] = getDistanceBetweenCity(
+                nodes[indexKota], nodes[indexAdj])
             # print(nodes[indexAdj]["name"])
         indexAdj += 1
-    print(copyAdj[1])
+
+    print(copyAdj[indexKota])
+    for i in range(len(copyAdj[indexKota])):
+        if (copyAdj[indexKota][i] != 0):
+            uniformCost.append([copyAdj[indexKota][i], [indexKota, i]])
+
+    # f(n)
+    for i in range(len(copyAdj[indexKota])):
+        if (copyAdj[indexKota][i] != 0):
+            copyAdj[indexKota][i] += copyNodes[i]["distance"]
+
+    # getMinimum((copyAdj[indexKotaAwal]))
+    # print(copyNodes[1]["distance"])
+    # print(copyAdj[indexKota])
+    for i in range(len(copyAdj[indexKota])):
+        if (copyAdj[indexKota][i] != 0):
+            totalDistance.append([copyAdj[indexKota][i], [indexKota, i]])
+
+    print(getIndexMinimumDistance(totalDistance))
+    print(totalDistance)
+    print(uniformCost)
 
 
 # print(getDistanceToCity(nodes[1], nodes, adj))
 # print(nodes)
 
-# aStarPath("Arad", "Bucharest", nodes, adj)
-arrayRute = [[1000, [1, 2, 3, 4]], [240, [1, 3, 4]], [150, [1, 4]]]
-getMinimum(arrayRute)
+# arrayRute = [[1000, [1, 2, 3, 4]], [240, [1, 3, 4]], [150, [1, 4]]]
+# print(getMinimum(arrayRute))
+#print(arrayRute[0][0] < arrayRute[1][0])
+aStarPath("Arad", "Bucharest", nodes, adj)
