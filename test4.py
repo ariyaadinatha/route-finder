@@ -241,17 +241,24 @@ def aStarPath(kotaAwal, kotaTujuan, nodes, adj):
     for i in tetangga:
         astar.append([[uniformSearch[indexKotaAwal][i] +
                      greedySearch[i]], [indexKotaAwal, i]])
-    print(astar)
+    # print(astar)
     minimumIndex = (getIndexMinimumDistance(astar))
-    print(astar[minimumIndex][1][-1])
-    # while ((astar[minimumIndex][1][-1]) != indexKotaTujuan):
-    #     tetangga = (getAdjIndex(
-    #         nodes[astar[minimumIndex][1][-1]]["name"], nodes, adj))
-    #     for i in tetangga:
-    #         astar.append([[uniformSearch[astar[minimumIndex][1][-1]][i] +
-    #                        greedySearch[i]], [astar[minimumIndex][1][-1], i]])
-    #     minimumIndex = (getIndexMinimumDistance(astar))
-    #     # print(f"minimumIndex : {minimumIndex}")
+    # print(astar[minimumIndex][1][-1])
+    temp = []
+    while ((astar[minimumIndex][1][-1]) != indexKotaTujuan):
+        tetangga = (getAdjIndex(
+            nodes[astar[minimumIndex][1][-1]]["name"], nodes, adj))
+        for i in tetangga:
+            temp.append([[uniformSearch[astar[minimumIndex][1][-1]][i] +
+                          greedySearch[i]], [astar[minimumIndex][1][-1], i]])
+            if (i == indexKotaTujuan):
+                break
+        # print(f"minimumIndex : {minimumIndex}")
+        print(temp)
+        print("")
+        astar += temp
+        minimumIndex = (getIndexMinimumDistance(astar))
+        temp = []
     # print(astar)
 
 
