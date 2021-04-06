@@ -33,14 +33,11 @@ export const parseFeatureWithGeoJSON = (feature) => {
 
     if (featureType === "Point") {
       parsedFeature.set("name", feature.name);
-      console.log(parsedFeature.get("name"));
 
       const pointStyle = getPointStyle(parsedFeature);
       parsedFeature.setStyle(pointStyle);
     }
   });
-
-  //   console.log(parsedFeatures);
 
   return parsedFeatures;
 };
