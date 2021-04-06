@@ -1,100 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Route Finder</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
-	<script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+      src="https://openlayers.org/en/v4.6.5/build/ol.js"
+      type="text/javascript"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://openlayers.org/en/v4.6.5/css/ol.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
+  </head>
 
-    <script>
-        var map;
-        // Koordinat ITB
-        var mapLat = -6.890282;
-        var mapLng = 107.610400;
-        var mapDefaultZoom = 18;
-
-        function initialize_map() {
-            map = new ol.Map({
-                target: "map",
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.OSM()
-                    })
-                ],
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([mapLng, mapLat]),
-                    zoom: mapDefaultZoom
-                })
-            });
-    
-            map.on('click', function (evt) {
-                var coor = (ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326'));
-                point(coor[1], coor[0]);
-            });
-        }
-    
-        function point(lat, lng) {
-          var vectorLayer = new ol.layer.Vector({
-            source:new ol.source.Vector({
-              features: [new ol.Feature({
-                    geometry: new ol.geom.Point(ol.proj.transform([parseFloat(lng), parseFloat(lat)], 'EPSG:4326', 'EPSG:3857')),
-                })]
-            }),
-            style: new ol.style.Style({
-              image: new ol.style.Icon({
-                src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Google_Maps_pin.svg"
-              })
-            })
-          });
-    
-          map.addLayer(vectorLayer); 
-        }
-
-        
-
-      </script>
-</head>
-<body onload="initialize_map();">
+  <body onload="initialize_map();">
     <div class="container h-100">
-        <div class="row">
-            <div class="col-12 d-flex">
-                <div class="display-3">
-                    Route Finder
-                </div>
-            </div>
-            <div class="col-12 d-flex">
-                <div id="map" class="maps-frame"></div>
-            </div>
-            <div class="col-12 d-flex">
-                <form method="POST" action="post.php" class="submit-form">
-                    <input type="file" class="form-control" name="file-graf"/>
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="posisi-awal" placeholder="Posisi Awal">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="posisi-tujuan" placeholder="Posisi Tujuan">
-                                </div>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+      <div class="row">
+        <div class="col-12 d-flex">
+          <div class="display-3">Route Finder</div>
         </div>
+        <div class="col-12 d-flex">
+          <div id="map" class="maps-frame"></div>
+        </div>
+        <div class="col-12 d-flex">
+          <form
+            method="POST"
+            action="/"
+            class="submit-form"
+            enctype="multipart/form-data"
+          >
+            <input type="file" class="form-control" name="file-graf" />
+            <table>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="posisi-awal"
+                      placeholder="Posisi Awal"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="posisi-tujuan"
+                      placeholder="Posisi Tujuan"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <!-- <ul>
+                 {% for item in data %}
+                     <li>{{item.name}}</li>
+                     <li>{{item.place}}</li>
+                     <li>{{item.mob}}</li>
+                 {% endfor %}
+                 </ul> -->
+      </div>
     </div>
-</body>
+  </body>
 </html>
