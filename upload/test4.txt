@@ -1,0 +1,78 @@
+nodes = [
+    {
+        "longitude": 115.23385360836984,
+        "latitude": -8.673158801771962,
+        "name": "Lapangan Puputan"
+    },
+    {
+        "longitude": 115.24488419294359,
+        "latitude": -8.6734677057039,
+        "name": "Monumen Bundaran Renon"
+    },
+    {
+        "longitude": 115.24070531129837,
+        "latitude": -8.664531927149241,
+        "name": "Klinik Utama Padma Bahtera"
+    },
+    {
+        "longitude": 115.25957331061363,
+        "latitude": -8.674365249163287,
+        "name": "Sanur"
+    },
+    {
+        "longitude": 115.22169515490533,
+        "latitude": -8.672562205476154,
+        "name": "Florence Bakery"
+    },
+    {
+        "longitude": 115.22210016846657,
+        "latitude": -8.666776498034608,
+        "name": "Dinas Pendapatan"
+    },
+    {
+        "longitude": 115.2385099232197,
+        "latitude": -8.667373103516823,
+        "name": "Ayam Betutu Bu Nia"
+    },
+    {
+        "longitude": 115.23861318826678,
+        "latitude": -8.664653900630867,
+        "name": "Merdeka Medical Center"
+    },
+    {
+        "longitude": 115.21550461649895,
+        "latitude": -8.669486405094972,
+        "name": "Kimia Farma"
+    },
+    {
+        "longitude": 115.21517738699916,
+        "latitude": -8.679039864756348,
+        "name": "Pertamina"
+    },
+    {
+        "longitude": 115.21597869694233,
+        "latitude": -8.679234086748295,
+        "name": "Gang Kuntul"
+    },
+    {
+        "longitude": 115.22177293896675,
+        "latitude": -8.669791334705451,
+        "name": "Raya Puputan"
+    }
+]
+
+adj = [
+    # 1  2  3  4  5  6  7  8  9  10 11 12
+    [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],  # 1 Lapangan Puputan
+    [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],  # 2 Monumen Bundaran Renon
+    [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],  # 3 Klinik Utama Padma Bahtera
+    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # 4 Sanur
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 5 Florence Bakery
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],  # 6 Dinas Pendapatan
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],  # 7 Ayam Betutu Bu Nia
+    [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0],  # 8 Merdeka Medical Center
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],  # 9 Kimia Farma
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],  # 10 Pertamina
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],  # 11 Gang Kuntul
+    [0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0],  # 12 Raya Puputan
+]
