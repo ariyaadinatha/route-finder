@@ -1,164 +1,5 @@
 import math
 
-# nodes = [
-#     {
-#         "longitude": 44.457,
-#         "latitude": 26.093,
-#         "name": "Bucharest"
-#     },
-#     {
-#         "longitude": 46.181,
-#         "latitude": 21.312,
-#         "name": "Arad"
-#     },
-#     {
-#         "longitude": 46.624,
-#         "latitude": 21.518,
-#         "name": "Zerind"
-#     },
-#     {
-#         "longitude": 47.089,
-#         "latitude": 21.907,
-#         "name": "Oradea"
-#     },
-#     {
-#         "longitude": 45.794,
-#         "latitude": 24.128,
-#         "name": "Sibiu"
-#     },
-#     {
-#         "longitude": 45.842,
-#         "latitude": 24.973,
-#         "name": "Fagaras"
-#     },
-#     {
-#         "longitude": 45.756,
-#         "latitude": 21.231,
-#         "name": "Timisoara"
-#     },
-#     {
-#         "longitude": 45.691,
-#         "latitude": 21.903,
-#         "name": "Lugoj"
-#     },
-#     {
-#         "longitude": 44.904,
-#         "latitude": 22.365,
-#         "name": "Mehadia"
-#     },
-#     {
-#         "longitude": 44.639,
-#         "latitude": 22.659,
-#         "name": "Drobeta"
-#     },
-#     {
-#         "longitude": 44.319,
-#         "latitude": 23.794,
-#         "name": "Cralova"
-#     },
-#     {
-#         "longitude": 45.099,
-#         "latitude": 24.369,
-#         "name": "Rimnicu Vilcea"
-#     },
-#     {
-#         "longitude": 44.856,
-#         "latitude": 24.869,
-#         "name": "Pitesti"
-#     },
-#     {
-#         "longitude": 43.905,
-#         "latitude": 25.969,
-#         "name": "Giurgiu"
-#     },
-#     {
-#         "longitude": 44.718,
-#         "latitude": 26.645,
-#         "name": "Urziceni"
-#     },
-#     {
-#         "longitude": 47.056,
-#         "latitude": 26.506,
-#         "name": "Neamt"
-#     },
-#     {
-#         "longitude": 47.158,
-#         "latitude": 27.598,
-#         "name": "Iasi"
-#     },
-#     {
-#         "longitude": 46.641,
-#         "latitude": 27.728,
-#         "name": "Vaslui"
-#     },
-#     {
-#         "longitude": 44.69,
-#         "latitude": 27.945,
-#         "name": "Hirsova"
-#     },
-#     {
-#         "longitude": 44.049,
-#         "latitude": 28.653,
-#         "name": "Eforie"
-#     }
-# ]
-
-# adj = [
-#     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],  # Bucharest
-#     [0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # Arad
-#     [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # Zering
-#     [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # Oradea
-#     [0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-# ]
-
-
-nodes = [
-    {
-        "longitude": 0,
-        "latitude": 10,
-        "name": "A"
-    },
-    {
-        "longitude": 0,
-        "latitude": 0,
-        "name": "B"
-    },
-    {
-        "longitude": 5,
-        "latitude": 0,
-        "name": "C"
-    },
-    {
-        "longitude": 5,
-        "latitude": 5,
-        "name": "D"
-    }
-
-]
-
-adj = [
-    [0, 0, 0, 1],
-    [0, 0, 1, 0],
-    [0, 1, 0, 0],
-    [1, 0, 0, 0]
-]
-
 def getIndexCity(city, nodes, adj):
     index = 0
     for i in nodes:
@@ -228,7 +69,7 @@ def getMinimum(arrayRute):
 def hn(kotaAwal, kotaTujuan):
     return getDistanceBetweenCity(kotaAwal, kotaTujuan)
 
-def gn(nodeProcessAwal, kotaNext, nodes):
+def gn(nodeProcessAwal, kotaNext, nodes, adj):
     nameKotaAwal = nodeProcessAwal["node"]["name"]
     indexKotaAwal = getIndexCity(nameKotaAwal, nodes, adj)
     nodeKotaAwal = nodes[indexKotaAwal]
@@ -267,7 +108,7 @@ def fn(nodeProcessAwal, kotaNext, kotaTujuan, nodes, adj):
     nodeProcessNext["hn"] = h
     f += h
 
-    g = gn(nodeProcessAwal, kotaNext, nodes)
+    g = gn(nodeProcessAwal, kotaNext, nodes, adj)
     nodeProcessNext["gn"] = g
     f += g
 
@@ -276,18 +117,6 @@ def fn(nodeProcessAwal, kotaNext, kotaTujuan, nodes, adj):
 
     return nodeProcessNext
 
-
-
-# nodeProcessAwal = {
-#     "node": nodes[0],
-#     "visited": [1, 2, 3],
-#     "gn" : 100
-# }
-
-# print(fn(nodeProcessAwal, "D", "B", nodes, adj))
-
-# print(getAdjIndex("C", nodes, adj))
-# print(getAdjIndex("D", nodes, adj))
 
 def isPathAvailable(kotaAwal, kotaTujuan, nodes, adj):
     indexKotaAwal = getIndexCity(kotaAwal, nodes, adj)
@@ -365,15 +194,12 @@ def aStarPath(kotaAwal, kotaTujuan, nodes, adj):
             nodeKotaCurrent = nodes[indexKotaCurrent]
             nodeProcessCurrent = minProcess
 
+        nodeProcessCurrent["path"] = [nodeIndex for nodeIndex in nodeProcessCurrent["visited"]]
+        nodeProcessCurrent["path"].append(indexKotaCurrent)
+
         nodeProcessCurrent["error"] = False
+
 
         return nodeProcessCurrent
     else :
         return {"error": True}
-
-
-# aStarPath("Arad", "Bucharest", nodes, adj)
-# print(isPathAvailable("Arad", "Bucharest", nodes, adj))
-
-print(aStarPath("A", "D", nodes, adj))
-# print(isPathAvailable("A", "D", nodes, adj))
