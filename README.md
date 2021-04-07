@@ -7,7 +7,6 @@
 - [General info](#general-info)
 - [Setup](#setup)
 - [Features](#features)
-- [Status](#status)
 - [Inspiration](#inspiration)
 - [Contact](#contact)
 
@@ -20,18 +19,28 @@ Web App ini merupakan implementasi dari algoritma A\* untuk memenuhi tugas kecil
 ### Requirement
 
 1. NPM version >= v6.14.11
-2. PHP version >= 7.14.15
+2.
 
-### Instalation
+### Backend Server setup
 
-1. masuk ke folder directory
-2. pada terminal "npm install"
-3. dan "npm start"
+1. Install python ( https://www.python.org/downloads/ )
+2. Install pip ( https://phoenixnap.com/kb/install-pip-windows : windows, https://www.tecmint.com/install-pip-in-linux/ : linux, https://www.geeksforgeeks.org/how-to-install-pip-in-macos/ : mac )
+3. Open terminal / command prompt
+4. go to folder "src/backend"
+5. pip install -r .\requirements.txt
+6. python .\main.py
 
-## Code Examples
+### Frontend Server setup
 
-Show examples of usage:
-`put-your-code-here`
+1. Install Node.js ( https://nodejs.org/en/download/ ) and NPM
+2. go to folder "src/frontend"
+3. npm install
+4. npm start
+
+### Opening the web app
+
+1. open your browser
+2. go to localhost:3000
 
 ## Features
 
@@ -39,14 +48,6 @@ Show examples of usage:
 - Map marker
 - Map line between marker
 - Matrix Adjency generator
-
-To-do list:
-
-- Auto name node
-
-## Status
-
-Project is: _in progress_
 
 ## Inspiration
 
