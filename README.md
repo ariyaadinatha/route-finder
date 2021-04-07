@@ -16,11 +16,6 @@ Web App ini merupakan implementasi dari algoritma A\* untuk memenuhi tugas kecil
 
 ## Setup
 
-### Requirement
-
-1. NPM version >= v6.14.11
-2.
-
 ### Backend Server setup
 
 1. Install python ( https://www.python.org/downloads/ )
