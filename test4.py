@@ -259,7 +259,8 @@ def aStarPath(kotaAwal, kotaTujuan, nodes, adj):
         astar += temp
         minimumIndex = (getIndexMinimumDistance(astar))
         temp = []
-    # print(astar)
+    print(astar)
 
 
 aStarPath("Arad", "Bucharest", nodes, adj)
+# asal, kota tujuan
