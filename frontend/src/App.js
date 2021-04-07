@@ -14,7 +14,9 @@ function App() {
             Route Finder dapat menerima input dari file ataupun langsung dari
             map-nya. Anda dapat mengclick titik di map untuk mengambil
             koordinat. Anda juga dapat menghapus koordinat yang sudah ambil pada
-            nodes list. Aturlah rute dengan menggunakan adjacency matrix
+            nodes list. Aturlah rute dengan menggunakan adjacency matrix. Jika
+            anda meggunakan input file, jangan lupa untuk mengset ulang node
+            yang dipilih di menu Select Node
           </h5>
           <br />
           <h5>

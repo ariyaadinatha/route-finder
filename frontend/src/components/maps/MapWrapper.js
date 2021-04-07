@@ -181,6 +181,8 @@ function MapWrapper(props) {
             setAdjMatrix={setAdjMatrix}
             setNodes={setNodes}
             featuresLayerRef={featuresLayerRef}
+            setNodeStart={setNodeStart}
+            setNodeDestination={setNodeDestination}
           />
         </div>
         <div className="map-top d-flex mb-5">

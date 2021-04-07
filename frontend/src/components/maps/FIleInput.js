@@ -7,7 +7,13 @@ import {
 import fileInputExample from "../../img/file-input-example.png";
 
 const FileInput = (props) => {
-  const { setAdjMatrix, setNodes, featuresLayerRef } = props;
+  const {
+    setAdjMatrix,
+    setNodes,
+    featuresLayerRef,
+    setNodeDestination,
+    setNodeStart,
+  } = props;
 
   const fileValid = (nodes, adj) => {
     const nodesCount = nodes.length;
@@ -24,7 +30,8 @@ const FileInput = (props) => {
     e.preventDefault();
     const reader = new FileReader();
 
-    console.log("read file");
+    setNodeStart("");
+    setNodeDestination("");
 
     reader.onload = async (e) => {
       try {
