@@ -1,12 +1,5 @@
-import React, { useEffect } from "react";
-import useState from "react-usestateref";
-
-// openlayers
-import GeoJSON from "ol/format/GeoJSON";
-import Feature from "ol/Feature";
+import React from "react";
 import MapWrapper from "./components/maps/MapWrapper";
-import NodesList from "./components/graph/NodesList";
-import { nodesToPointsFeature } from "./util/OpenLayersFeatures";
 
 // components
 
@@ -24,11 +17,7 @@ function App() {
       <style>
         {`
           .App {
-            background: #98D2EB;
-            height: 100%;          
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+          
           }
 
           .title {

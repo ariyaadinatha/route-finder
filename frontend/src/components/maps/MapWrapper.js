@@ -24,6 +24,9 @@ import {
   addVertexToMatrix,
   deleteNodeFromMatrix,
 } from "../../util/AdjacencyMatrix";
+import SelectNode from "../graph/SelectNode";
+import Submit from "./Submit";
+import Result from "./Result";
 
 const itbLat = -6.890282;
 const itbLng = 107.6104;
@@ -35,6 +38,11 @@ function MapWrapper(props) {
   const [nodes, setNodes, nodesRef] = useState([]);
   const [nodeNum, setNodeNum, nodeNumRef] = useState(0);
   const [adjMatrix, setAdjMatrix, adjMatrixRef] = useState([]);
+
+  const [nodeStart, setNodeStart, nodeStartRef] = useState("");
+  const [nodeDestination, setNodeDestination, nodeDestinationtRef] = useState(
+    ""
+  );
 
   const mapElement = useRef();
 
@@ -104,6 +112,10 @@ function MapWrapper(props) {
         features: features,
       })
     );
+
+    // reset selected nodes
+    setNodeStart("");
+    setNodeDestination("");
   };
 
   const handleDeleteNodeAtIndex = (index) => {
@@ -127,6 +139,10 @@ function MapWrapper(props) {
         features: features,
       })
     );
+
+    // reset selected nodes
+    setNodeStart("");
+    setNodeDestination("");
   };
 
   const handleAddNode = (longitude, latitude) => {
@@ -167,10 +183,32 @@ function MapWrapper(props) {
           </div>
         </div>
 
-        <NodesList
-          nodes={nodes}
-          handleDeleteNodeAtIndex={handleDeleteNodeAtIndex}
-        />
+        <div className="mb-5">
+          <NodesList
+            nodes={nodes}
+            handleDeleteNodeAtIndex={handleDeleteNodeAtIndex}
+          />
+        </div>
+        <div className="mb-5">
+          <SelectNode
+            nodes={nodes}
+            setNodeStart={setNodeStart}
+            setNodeDestination={setNodeDestination}
+          />
+        </div>
+
+        <div className="mb-5">
+          <Submit
+            nodeStart={nodeStart}
+            nodeDestination={nodeDestination}
+            nodes={nodes}
+            adj={adjMatrix}
+          />
+        </div>
+
+        <div className="mb-5">
+          <Result />
+        </div>
       </div>
 
       <style>

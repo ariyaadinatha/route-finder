@@ -13,6 +13,10 @@ const NodesList = (props) => {
               key={index}
               className="node-list-element d-flex align-items-center mb-3"
             >
+              <p className="m-0 mr-3">
+                {index + 1 < 10 ? "0" : ""}
+                {index + 1}.
+              </p>
               <button
                 onClick={() => handleDeleteNodeAtIndex(index)}
                 className="x-btn mr-4"

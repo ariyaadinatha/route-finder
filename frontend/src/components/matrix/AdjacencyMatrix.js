@@ -9,9 +9,30 @@ const AdjacencyMatrix = (props) => {
       <div className="adj-title-container d-flex text-center">
         <h3 className="adj-title w-100">Adjacency Matrix</h3>
       </div>
+      <div className="matrix-row d-flex">
+        <div className="plus-sign">
+          <p className="m-0 p-0">+</p>
+        </div>
+        {adjMatrix.map((_, i) => {
+          return (
+            <div className="num-col">
+              <p className="m-0 p-0">
+                {i + 1 < 10 ? "0" : ""}
+                {i + 1}.
+              </p>
+            </div>
+          );
+        })}
+      </div>
       {adjMatrix.map((row, i) => {
         return (
           <div className="matrix-row d-flex" key={i}>
+            <div className="num-row">
+              <p className="p-0 m-0">
+                {i + 1 < 10 ? "0" : ""}
+                {i + 1}.
+              </p>
+            </div>
             {row.map((el, j) => {
               return (
                 <div className={`m-1`}>
@@ -59,6 +80,21 @@ const AdjacencyMatrix = (props) => {
             .adj-element-1 {
                 background: #2F4C58;
                 color: #e4dbd9;
+            }
+
+            .num-row {
+              padding: 0;
+              margin: .5rem .1rem;
+            }
+
+            .num-col {
+              padding: 0;
+              margin: 0 .35rem;
+            }
+
+            .plus-sign {
+              margin-right: .5rem;
+              margin-left: .5rem;
             }
         `}
       </style>
