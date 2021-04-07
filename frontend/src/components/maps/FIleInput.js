@@ -4,6 +4,7 @@ import {
   adjacencyMatrixToLineFeature,
   nodesToPointsFeature,
 } from "../../util/OpenLayersFeatures";
+import fileInputExample from "../../img/file-input-example.png";
 
 const FileInput = (props) => {
   const { setAdjMatrix, setNodes, featuresLayerRef } = props;
@@ -66,7 +67,14 @@ const FileInput = (props) => {
       <div className="d-flex text-center mb-4">
         <h3 className="file-input-title w-100">File Input</h3>
       </div>
-      <input type="file" onChange={(e) => parseFile(e)} />
+      <div className="d-flex justify-content-center flex-column align-items-center text-center">
+        <p>
+          Please input the file using the correct format, below are the example
+        </p>
+        <input type="file" onChange={(e) => parseFile(e)} className="mb-4" />
+        <img src={fileInputExample} />
+      </div>
+
       <style>
         {`
                     .file-input-title {

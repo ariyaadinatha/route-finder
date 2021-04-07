@@ -77,6 +77,7 @@ const Result = (props) => {
 
       {!result?.error ? (
         <div>
+          <h5>Jarak lintasan: {result.gn} KM</h5>
           <div ref={mapElement} className="map-result"></div>
         </div>
       ) : (

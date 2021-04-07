@@ -175,7 +175,7 @@ function MapWrapper(props) {
 
   return (
     <>
-      <div className="container">
+      <div className="">
         <div className="mb-5">
           <FileInput
             setAdjMatrix={setAdjMatrix}
