@@ -80,3 +80,33 @@ export const adjacencyMatrixToLineFeature = (matrix, nodes) => {
 
   return result;
 };
+
+export const pathArrayToLineFeature = (path, nodes) => {
+  var result = [];
+
+  path.forEach((_, i) => {
+    if (i < path.length - 1) {
+      const feature = {
+        type: "LineString",
+        coordinates: [
+          [nodes[path[i]].longitude, nodes[path[i]].latitude],
+          [nodes[path[i + 1]].longitude, nodes[path[i + 1]].latitude],
+        ],
+      };
+
+      result = result.concat(parseFeatureWithGeoJSON(feature));
+    }
+  });
+
+  return result;
+};
+
+export const pathArrayToPointFeature = (path, nodes) => {
+  var pathNodes = [];
+
+  path.forEach((nodeIndex) => {
+    pathNodes = pathNodes.concat(nodes[nodeIndex]);
+  });
+
+  return nodesToPointsFeature(pathNodes);
+};

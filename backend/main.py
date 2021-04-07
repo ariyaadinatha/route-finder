@@ -12,24 +12,24 @@ CORS(app)
 def getPathAStar():
     res = {}
 
-    # try:
+    try:
 
-    body = request.get_json()
+        body = request.get_json()
 
-    nodeStart = body["nodeStart"]
-    nodeDestination = body["nodeDestination"]
-    nodes = body["nodes"]
-    adj = body["adj"]
+        nodeStart = body["nodeStart"]
+        nodeDestination = body["nodeDestination"]
+        nodes = body["nodes"]
+        adj = body["adj"]
 
-    res = aStarPath(nodeStart, nodeDestination, nodes, adj)
+        res = aStarPath(nodeStart, nodeDestination, nodes, adj)
 
-    # except:
+    except:
 
-    #     res = {"error": True}
+        res = {"error": True}
 
-    # finally:
+    finally:
         
-    return jsonify(res)
+        return jsonify(res)
 
 PORT = 5000
 if __name__ == "__main__":

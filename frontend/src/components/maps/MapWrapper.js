@@ -27,6 +27,7 @@ import {
 import SelectNode from "../graph/SelectNode";
 import Submit from "./Submit";
 import Result from "./Result";
+import FileInput from "./FIleInput";
 
 const itbLat = -6.890282;
 const itbLng = 107.6104;
@@ -43,6 +44,8 @@ function MapWrapper(props) {
   const [nodeDestination, setNodeDestination, nodeDestinationtRef] = useState(
     ""
   );
+
+  const [result, setResult] = useState({});
 
   const mapElement = useRef();
 
@@ -173,6 +176,13 @@ function MapWrapper(props) {
   return (
     <>
       <div className="container">
+        <div className="mb-5">
+          <FileInput
+            setAdjMatrix={setAdjMatrix}
+            setNodes={setNodes}
+            featuresLayerRef={featuresLayerRef}
+          />
+        </div>
         <div className="map-top d-flex mb-5">
           <div ref={mapElement} className="map-container"></div>
           <div className="adj-container w-50 ml-5">
@@ -203,12 +213,17 @@ function MapWrapper(props) {
             nodeDestination={nodeDestination}
             nodes={nodes}
             adj={adjMatrix}
+            setResult={setResult}
           />
         </div>
 
-        <div className="mb-5">
-          <Result />
-        </div>
+        {result?.error === true || result?.error === false ? (
+          <div className="mb-5">
+            <Result result={result} nodes={nodes} />
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
 
       <style>

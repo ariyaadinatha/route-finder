@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Circular from "../common/Circular";
 
 const Submit = (props) => {
-  const { nodeStart, nodeDestination, nodes, adj } = props;
+  const { nodeStart, nodeDestination, nodes, adj, setResult } = props;
   const [isLoading, setIsLoading] = useState(false);
   const hanldeSubmit = () => {
     if (nodeStart == "" || nodeDestination == "") {
@@ -18,15 +18,13 @@ const Submit = (props) => {
         adj,
       };
 
-      console.log(requestBody);
-
       axios
         .post("http://localhost:5000/path-a-star", requestBody)
         .then((response) => {
-          console.log(response);
+          setResult(response.data);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((_) => {
+          alert("Error occured!");
         })
         .finally(() => {
           setIsLoading(false);
